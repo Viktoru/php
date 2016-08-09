@@ -1,0 +1,17 @@
+<script>
+$(document).ready(function(){
+    $.get (
+        "https://www.googleapis.com/youtube/v3/channels?part=contentDetails&forUsername=[ here ]&key=[ here]",
+        function(data){
+            $.each(data.items, function(i, items){
+                //	console.log(items);
+                payid = items.contentDetails.relatedPlaylists.uploads;
+
+                getViktor(payid);
+            })
+
+			}
+
+    );
+
+</script>
