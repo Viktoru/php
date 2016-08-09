@@ -15,3 +15,33 @@ $(document).ready(function(){
     );
 
 </script>
+function getViktor(payid){
+			$.get (
+				"https://www.googleapis.com/youtube/v3/playlistItems?",{
+					part: 'snippet',
+					maxResults: 23,
+					playlistId: payid,
+					key: 'AIzaSyBjrX-Bytcnsf6by1HqkNuQ9td51mMYxbg'},
+				function(data){
+					var output;
+					$.each(data.items, function(i, items){
+						//console.log(items);
+						videoTitle = items.snippet.title;
+						vikid  = items.snippet.resourceId.videoId;
+
+						console.log(vikid);
+
+						console.log(vikid);
+						output = '<li><a href="' + "https://www.youtube.com/watch?v=" + vikid +'" target="_blank">' + videoTitle + '</li>';
+						$('#results').append(output);
+
+					})
+
+
+				}
+
+			);
+
+
+		}
+	});
