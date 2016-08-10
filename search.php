@@ -28,7 +28,7 @@ public function search_user_db($search=""){
                          //   console.log(search_str);
                             $.ajax({
                                 type: "post",
-                                url: "http://dashboard.decisionaid.systems/admin_user/search_user_profile/", //+ search_str
+                                url: "/search_profile/", //+ search_str
                                 cache: false,
                                 data:'search='+$("#search").val(),
                                 success: mySearch
