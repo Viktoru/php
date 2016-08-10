@@ -21,7 +21,7 @@ function getViktor(payid){
 					part: 'snippet',
 					maxResults: 23,
 					playlistId: payid,
-					key: 'AIzaSyBjrX-Bytcnsf6by1HqkNuQ9td51mMYxbg'},
+					key: '[your key]'},
 				function(data){
 					var output;
 					$.each(data.items, function(i, items){
