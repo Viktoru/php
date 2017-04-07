@@ -1,47 +1,58 @@
 <script>
-$(document).ready(function(){
-    $.get (
-        "https://www.googleapis.com/youtube/v3/channels?part=contentDetails&forUsername=[ here ]&key=[ here]",
-        function(data){
-            $.each(data.items, function(i, items){
-                //	console.log(items);
-                payid = items.contentDetails.relatedPlaylists.uploads;
+$(document).ready(function () {
+        $.get(
+            "https://www.googleapis.com/youtube/v3/channels?part=contentDetails&forUsername=wsuipmdas&key=[your key]",
+            function (data) {
+                $.each(data.items, function (i, items) {
+                    //    console.log(items);
+                    payid = items.contentDetails.relatedPlaylists.uploads;
 
-                getViktor(payid);
-            })
+                    getViktor(payid);
+                })
 
-			}
+            }
+        );
 
-    );
+        function getViktor(payid) {
+            $.get(
+                "https://www.googleapis.com/youtube/v3/playlistItems?", {
+                    part: 'snippet',
+                    maxResults: 23,
+                    playlistId: payid,
+                    key: 'Your Key'
+                },
+                function (data) {
+                    var output;
+                    
+                    $.each(data.items, function (i, items) {
+                        //console.log(items);
+                        var videoTitle = items.snippet.title,
+                            vikid = items.snippet.resourceId.videoId;
+                        
+                        // <li><a class="lolipop" data-link="" href="' + "https://www.youtube.com/watch?v=" + vikid +'">' + videoTitle + '</li>';
 
-</script>
-function getViktor(payid){
-			$.get (
-				"https://www.googleapis.com/youtube/v3/playlistItems?",{
-					part: 'snippet',
-					maxResults: 23,
-					playlistId: payid,
-					key: '[your key]'},
-				function(data){
-					var output;
-					$.each(data.items, function(i, items){
-						//console.log(items);
-						videoTitle = items.snippet.title;
-						vikid  = items.snippet.resourceId.videoId;
+                        //'<li><a href="' + "https://www.youtube.com/watch?v=" + vikid +'">' + videoTitle + '</li>';
 
-						console.log(vikid);
+                        // This is the link and the list of youtube videos display in the results. Also linking each video vikid to play it.
+//						console.log(vikid);
+//						output = '<li><a onclick="lolipopon(vikid)" href="' + "https://www.youtube.com/watch?v=" + vikid +'">' + videoTitle + '</li>';
+//						$('#results').append(output);
 
-						console.log(vikid);
-						output = '<li><a href="' + "https://www.youtube.com/watch?v=" + vikid +'" target="_blank">' + videoTitle + '</li>';
-						$('#results').append(output);
-
-					})
+                        console.log(vikid);
+                        output = '<li><a href="' + "https://www.youtube.com/watch?v=" + vikid + '" target="_blank">' + videoTitle + '</li>';
+                        $('#results').append(output);
 
 
-				}
-
-			);
 
 
-		}
-	});
+                    })
+
+
+                }
+            );
+
+
+        }
+    });
+
+    </script>
